@@ -6,6 +6,9 @@ class AutoCarga {
         $archivo = "../clases/" .$clase . ".php";
          if (file_exists($archivo)) {
               require $archivo;
+         }else{
+             $archivo = "clases/" .$clase . ".php";
+             require $archivo;
          }
    }
 }
