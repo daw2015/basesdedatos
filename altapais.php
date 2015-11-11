@@ -6,7 +6,7 @@
         <title></title>
     </head>
     <body>
-        <form action="phpaltapais" method="POST">
+        <form action="phpaltapais.php" method="POST">
             Code<sup>*</sup> <input required  type="text" name="Code" value="" /><br />
             Name<sup>*</sup> <input required  type="text" name="Name" value="" /><br />
             Continent<sup>*</sup> <input required  list="continentes" name="Continent" value="" /><br />

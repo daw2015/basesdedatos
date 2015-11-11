@@ -1,9 +1,10 @@
 <?php
+
 require './clases/AutoCarga.php';
 
 $Code = Request::post("Code");
-$Name = Request::post("Name"); 
-$Continent = Request::post("Continent"); 
+$Name = Request::post("Name");
+$Continent = Request::post("Continent");
 $Region = Request::post("Region");
 $SurfaceArea = Request::post("SurfaceArea");
 $IndepYear = Request::post("IndepYear");
@@ -48,24 +49,25 @@ $sql = "insert into country "
         . " :GNP, :GNPOld, :LocalName, :GovernmentForm,"
         . " :HeadOfState, :Capital, :Code2)";
 
-        $sentencia = $conexion->prepare($sql);
-        $sentencia->bindValue("Code", $Code);
-        $sentencia->bindValue("Name", $Name);
-        $sentencia->bindValue("Continent", $Continent);
-        $sentencia->bindValue("Region", $Region);
-        $sentencia->bindValue("SurfaceArea", $SurfaceArea);
-        $sentencia->bindValue("IndepYear", $IndepYear);
-        $sentencia->bindValue("Population", $Population);
-        $sentencia->bindValue("LifeExpectancy", $LifeExpectancy);
-        $sentencia->bindValue("GNP", $GNP);
-        $sentencia->bindValue("GNPOld", $GNPOld);
-        $sentencia->bindValue("LocalName", $LocalName);
-        $sentencia->bindValue("GovernmentForm", $GovernmentForm);
-        $sentencia->bindValue("HeadOfState", $HeadOfState);
-        $sentencia->bindValue("Capital", $Capital);
-        $sentencia->bindValue("Code2", $Code2);
-        $resultado = $sentencia->execute();
-        
-        $conexion = null;
-        echo $resultado;
+$sentencia = $conexion->prepare($sql);
+$sentencia->bindValue("Code", $Code);
+$sentencia->bindValue("Name", $Name);
+$sentencia->bindValue("Continent", $Continent);
+$sentencia->bindValue("Region", $Region);
+$sentencia->bindValue("SurfaceArea", $SurfaceArea);
+$sentencia->bindValue("IndepYear", $IndepYear);
+$sentencia->bindValue("Population", $Population);
+$sentencia->bindValue("LifeExpectancy", $LifeExpectancy);
+$sentencia->bindValue("GNP", $GNP);
+$sentencia->bindValue("GNPOld", $GNPOld);
+$sentencia->bindValue("LocalName", $LocalName);
+$sentencia->bindValue("GovernmentForm", $GovernmentForm);
+$sentencia->bindValue("HeadOfState", $HeadOfState);
+$sentencia->bindValue("Capital", null);
+$sentencia->bindValue("Code2", $Code2);
+$resultado = $sentencia->execute();
+var_dump($conexion->errorInfo());
+
+$conexion = null;
+echo $resultado;
 
