@@ -54,6 +54,6 @@ $continent = Request::post("Continent");
         $sentencia->closeCursor();
         $conexion = null;
         ?>
-        <script src="js/scripts.js">
+        <script src="js/scripts.js"></script>
     </body>
 </html>
