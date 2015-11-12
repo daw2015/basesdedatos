@@ -43,13 +43,17 @@ $continent = Request::post("Continent");
         
         while( $fila = $sentencia->fetch() ) { // fetch -> siguiente fila
             foreach ($fila as $indice => $valor) {
-                echo "$indice: $valor<br>";
+                echo "$indice: $valor";
             }
+           ?>
+        <a class="borrar" href="phpdeletepais.php?code=<?php echo $fila[0] ?>">Borrar</a>
+          <?php
             echo "<hr>";
             echo $fila[0] . "<br/>";
         }
         $sentencia->closeCursor();
         $conexion = null;
         ?>
+        <script src="js/scripts.js">
     </body>
 </html>
