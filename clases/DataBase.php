@@ -44,6 +44,7 @@ class DataBase {
         foreach ($parametros as $nombreParametro => $valorParametro) {
             $this->consulta->bindValue($nombreParametro, $valorParametro);
         }
+        var_dump($parametros);
         echo "sql:" .$sql;
         return $this->consulta->execute();
     }
@@ -56,7 +57,7 @@ class DataBase {
         return $r;
     }
 
-    function delete($tabla, $condicion, $parametros = array()) {
+    function erase($tabla, $condicion, $parametros = array()) {
         //delete from TABLA where CONDICION
         $sql = "delete from $tabla where $condicion";
         if ($this->send($sql, $parametros)) {
@@ -65,6 +66,21 @@ class DataBase {
         return false;
     }
 
+     function delete($tabla, $parametros = array()) {
+        //delete from TABLA where CONDICION
+        $camposWhere = "";
+        foreach ($parametros as $nombreParametro => $valorParametro) {
+            $camposWhere .= $nombreParametro . " = :" . $nombreParametro . " and ";
+        }
+        //$camposWhere .= "1=1";
+        $camposWhere = substr($camposWhere, 0, -4);
+        $sql = "delete from $tabla where $camposWhere";
+        if ($this->send($sql, $parametros)) {
+            return $this->getCount();
+        }
+        return false;
+    }
+    
     function insert($tabla, $parametros = array(), $auto = true) {
         //insert into TABLA values (VALORES);
         //insert into TABLA (CAMPOS) values (VALORES);
@@ -129,6 +145,17 @@ class DataBase {
             $limit = "limit $limite";
         }
         $sql = "select $proyeccion from $tabla where $campos order by $orden $limit";
+        return $this->send($sql, $parametros);
+    }
+    
+    function select($tabla, $proyeccion = "*", $condicion = "1 = 1", 
+                    $parametros = array(), $orden="1", $limite=""){
+          $limit = "";
+        if($limite!==""){
+            $limit = "limit $limite";
+        }
+        $sql = "select $proyeccion from $tabla "
+                . "where $condicion order by $orden $limite";
         return $this->send($sql, $parametros);
     }
 
