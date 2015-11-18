@@ -77,10 +77,16 @@ class City {
     function set($valores, $inicio=0){
         $i = 0;
         foreach ($this as $indice => $valor) {
-           $this->$indice = $valoes[$i+$inicio];
+           $this->$indice = $valores[$i+$inicio];
            $i++;
         }
     }
     
-
+    public function __toString() {
+        $r ='';
+        foreach ($this as $key => $valor) { 
+            $r .= "$valor ";
+        }
+        return $r;
+    }
 }

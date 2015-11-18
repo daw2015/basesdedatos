@@ -166,6 +166,4 @@ class Country {
            $i++;
         }
     }
-    
-
 }

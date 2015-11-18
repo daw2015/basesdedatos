@@ -44,8 +44,8 @@ class DataBase {
         foreach ($parametros as $nombreParametro => $valorParametro) {
             $this->consulta->bindValue($nombreParametro, $valorParametro);
         }
-        var_dump($parametros);
-        echo "sql:" .$sql;
+      //  var_dump($parametros);
+      //  echo "sql:" .$sql;
         return $this->consulta->execute();
     }
 
