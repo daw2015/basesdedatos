@@ -162,8 +162,30 @@ class Country {
     function set($valores, $inicio=0){
         $i = 0;
         foreach ($this as $indice => $valor) {
-           $this->$indice = $valoes[$i+$inicio];
+           $this->$indice = $valores[$i+$inicio];
            $i++;
         }
     }
+    
+    public function __toString() {
+        $r ='';
+        foreach ($this as $key => $valor) { 
+            $r .= "$valor ";
+        }
+        return $r;
+    }
+    
+    public function getArray($valores = true){
+        $array = array();
+        foreach ($this as $key => $valor) {
+            if($valores === true){
+                $array[$key] = $valor;
+            }else{
+                $array[$key]=null;
+            }
+        }
+        return $array;
+    }
+    
+    
 }

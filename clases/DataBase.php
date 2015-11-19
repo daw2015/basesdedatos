@@ -128,7 +128,7 @@ class DataBase {
         if ($this->send($sql, $parametros)) {
             return $this->getCount();
         }
-        return false;
+        return -1;
     }
 
     function query($tabla, $proyeccion = "*", $parametros = array(), $orden = "1", $limite = "") {

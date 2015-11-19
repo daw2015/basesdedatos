@@ -27,6 +27,11 @@ class ManageCity {
         return $this->bd->delete($this->tabla, $parametros);
     }
     
+    
+    function deleteCities($parametros){
+        return $this->bd->delete($this->tabla, $parametros);
+    }
+    
     function erase(City $city){
         return $this->delete($city->getID());
     }
@@ -65,6 +70,15 @@ class ManageCity {
              $r[]=$city;
          }
          return $r;
+    }
+    
+     function getValuesSelect(){
+        $this->bd->query($this->tabla, "ID, Name", array(), "Name");
+        $array = array();
+        while($fila=$this->bd->getRow()){
+            $array[$fila[0]] = $fila[1];
+        }
+        return $array;
     }
 
 }
