@@ -60,9 +60,9 @@ class ManageCity {
         return $this->bd->insert($this->tabla, $parametrosSet);
     }
     
-    function getList(){
-        // $this->bd->select($this->tabla);
-         $this->bd->select($this->tabla, "*", "1=1", array(), "Name, CountryCode");
+    function getList($pagina=1, $nrpp=Constant::NRPP){
+         $registroInicial = ($pagina-1)*$nrpp;
+         $this->bd->select($this->tabla, "*", "1=1", array(), "Name, CountryCode", "$registroInicial, $nrpp");
          $r=array();
          while($fila =$this->bd->getRow()){
              $city = new City();
@@ -79,6 +79,10 @@ class ManageCity {
             $array[$fila[0]] = $fila[1];
         }
         return $array;
+    }
+    
+    function selectCount($registro){
+        
     }
 
 }

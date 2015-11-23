@@ -44,8 +44,9 @@ class DataBase {
         foreach ($parametros as $nombreParametro => $valorParametro) {
             $this->consulta->bindValue($nombreParametro, $valorParametro);
         }
-      //  var_dump($parametros);
-      //  echo "sql:" .$sql;
+        echo "parametros:";
+        var_dump($parametros);
+        echo "sql:" .$sql;
         return $this->consulta->execute();
     }
 
@@ -155,7 +156,7 @@ class DataBase {
             $limit = "limit $limite";
         }
         $sql = "select $proyeccion from $tabla "
-                . "where $condicion order by $orden $limite";
+                . "where $condicion order by $orden $limit";
         return $this->send($sql, $parametros);
     }
 

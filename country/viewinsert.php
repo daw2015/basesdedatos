@@ -33,7 +33,7 @@ $gestorCountry = new ManageCountry($bd);
             LifeExpectancy <input type="number" name="LifeExpectancy" value="" /><br />
             GNP <input type="number" name="GNP" value="" /><br />
             GNPOld <input type="number" name="GNPOld" value="" /><br />
-            LocalName <input type="text" name="LocalName" value="" /><br />
+            LocalName<sup>*</sup>  <input required="" type="text" name="LocalName" value="" /><br />
             GovernmentForm<sup>*</sup> <input required  type="text" name="GovernmentForm" value="" /><br />
             HeadOfState <input type="text" name="HeadOfState" value="" /><br />
             Capital <input type="text" name="Capital" value="" /><br />

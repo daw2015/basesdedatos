@@ -2,7 +2,11 @@
 require '../clases/AutoCarga.php';
 $bd = new DataBase();
 $gestor = new ManageCity($bd);
-$ciudades = $gestor->getList();
+$page = Request::get("page");
+if($page===null || $page ===""){
+    $page = 1;
+}
+$ciudades = $gestor->getList($page);
 $op = Request::get("op");
 $r = Request::get("r");
 //var_dump($bd->getError());
@@ -25,7 +29,16 @@ $r = Request::get("r");
             echo "<a href='viewedit.php?ID={$ciudad->getID()}'>editar</a>";
             echo "<br>";
         }
+        echo "&lt;&lt; ";
+        echo "&lt; ";
+        echo "&gt; ";
+        echo "&gt;&gt;";
         ?>
+        
+        <a href="?page=1">Primero</a>
+        <a href="?page=<?php echo max(1, $page-1);?>">Anterior</a>
+        <a href="?page=<?php echo min($page+1, 407);?>">Siguiente</a>
+        <a href="?page=1">Ultimo</a>
         <script src="../js/scripts.js"></script>
     </body>
 </html>

@@ -187,5 +187,10 @@ class Country {
         return $array;
     }
     
+    function read(){
+        foreach ($this as $key => $valor) {
+            $this->$key = Request::req($key);
+        }
+    }
     
 }

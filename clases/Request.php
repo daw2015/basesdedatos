@@ -53,16 +53,28 @@ class Request {
             if ($indice === null) {
                 $array = array();
                 foreach ($parametro as $value) {
-                    $array[] = self::clean($value, $filtrar);
+                    $r = self::clean($value, $filtrar);
+                    if($r===""){
+                        $r = null;
+                    }
+                    $array[] = $r;
                 }
                 return $array;
             } else {
                 if (isset($parametro[$indice])) {
-                    return self::clean($parametro[$indice], $filtrar);
+                    $r = self::clean($parametro[$indice], $filtrar);
+                     if($r===""){
+                        $r = null;
+                    }
+                    return $r;
                 }
             }
         } else {
-            return self::clean($parametro, $filtrar);
+            $r = self::clean($parametro, $filtrar);
+            if($r===""){
+                $r = null;
+            }
+            return $r;
         }
     }
 

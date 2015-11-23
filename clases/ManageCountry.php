@@ -21,7 +21,13 @@ class ManageCountry {
     }
     
     function get($Code){
-        //devuelve un objeto de la clase city
+        $parametros = array();
+        $parametros['Code'] = $Code;
+        $this->bd->select($this->tabla, "*", "Code=:Code", $parametros);
+        $fila=$this->bd->getRow();
+        $country = new Country();
+        $country->set($fila);
+        return $country;
     }
     
     function delete($Code){
@@ -46,11 +52,15 @@ class ManageCountry {
     }
     
     function set(Country $country, $pkCode){
-        //Update de todos los campos menos el id, el id se usara como el where para el update numero de filas modificadas
+        $parametros = $country->getArray();
+        $parametrosWhere = array();
+        $parametrosWhere["Code"] = $pkCode;
+        return $this->bd->update($this->tabla, $parametros, $parametrosWhere);
     }
     
     function insert(Country $country){
-        //Se pasa un objeto city y se inserta, se devuelve el id del elemento con el que se ha insertado
+        $parametros = $country->getArray();
+        return $this->bd->insert($this->tabla, $parametros, false);
     }
     
     function getValuesSelect(){
