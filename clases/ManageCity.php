@@ -81,8 +81,8 @@ class ManageCity {
         return $array;
     }
     
-    function selectCount($registro){
-        
+    function count($condicion="1 = 1", $parametros = array()){
+        return $this->bd->count($this->tabla, $condicion, $parametros);
     }
 
 }
