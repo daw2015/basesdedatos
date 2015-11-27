@@ -21,7 +21,7 @@ $r = Request::get("r");
         foreach ($paises as $indice => $pais) {
             echo $pais;
             echo "<a class='borrar' href='phpdelete.php?Code={$pais->getCode()}'>borrar</a> ";
-            echo "<a class='borrar' href='phpdelete.php?f=&Code={$pais->getCode()}'>Forzar borrado</a> ";
+            echo "<a class='borrar' href='phpdelete.php?f=h&Code={$pais->getCode()}'>Forzar borrado</a> ";
             echo "<a href='viewedit.php?Code={$pais->getCode()}'>editar</a>";
             echo "<br>";
         }

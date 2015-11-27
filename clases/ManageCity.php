@@ -60,9 +60,14 @@ class ManageCity {
         return $this->bd->insert($this->tabla, $parametrosSet);
     }
     
-    function getList($pagina=1, $nrpp=Constant::NRPP){
+    function getList($pagina=1, $orden="", $nrpp=Constant::NRPP){
+        
+        $ordenPredeterminado = "$orden, Name, CountryCode, ID";
+        if($orden==="" || $orden === null){
+            $ordenPredeterminado = "Name, CountryCode, ID";
+        }
          $registroInicial = ($pagina-1)*$nrpp;
-         $this->bd->select($this->tabla, "*", "1=1", array(), "Name, CountryCode", "$registroInicial, $nrpp");
+         $this->bd->select($this->tabla, "*", "1=1", array(), $ordenPredeterminado , "$registroInicial, $nrpp");
          $r=array();
          while($fila =$this->bd->getRow()){
              $city = new City();
